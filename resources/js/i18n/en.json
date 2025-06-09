@@ -1,0 +1,141 @@
+{
+  "app": {
+    "title": "Mach3 CNC Tool Data Management and DXF to G-code Conversion",
+    "subtitle": "Final Project Presentation",
+    "author": "Junior Software Developer",
+    "school": "Kuressaare Ametikool",
+    "language": "Language",
+    "studentName": "Anne Ruusmann"
+  },
+  "navigation": {
+    "home": "Home",
+    "pipeline": "Pipeline Demo",
+    "features": "Features",
+    "viewPipeline": "View Pipeline Demo",
+    "exploreFeatures": "Explore Features",
+    "slideshow": "Slideshow Mode",
+    "previous": "Previous",
+    "next": "Next",
+    "keyboardHint": "Use arrow keys to navigate • Space for next • P to play/pause"
+  },
+  "presentation": {
+    "toolManagement": {
+      "title": "Tool Management",
+      "description": "Comprehensive solution for CNC machine tool data management",
+      "features": {
+        "csv": "CSV-based tool data storage",
+        "sync": "Automatic Mach3 synchronization",
+        "backup": "Backup and restore capabilities",
+        "vbscript": "VBScript integration"
+      }
+    },
+    "dxfToGcode": {
+      "title": "DXF to G-code",
+      "description": "Automated transformation pipeline for CNC operations",
+      "features": {
+        "parse": "DXF file parsing",
+        "transform": "Coordinate transformation",
+        "optimize": "Horizontal drilling optimization",
+        "safety": "Safety-enhanced G-code output"
+      }
+    },
+    "about": {
+      "title": "About This Project",
+      "description1": "This project combines my hands-on CNC experience with software development skills acquired during my studies. It represents a practical solution to real-world manufacturing challenges.",
+      "description2": "By automating repetitive tasks and improving tool management, this system contributes to more efficient and sustainable industrial processes."
+    },
+    "funFacts": {
+      "title": "Fun Facts",
+      "coffeesConsumed": "Coffees consumed",
+      "bugsSquashed": "Bugs squashed",
+      "toolsSynced": "Tools synchronized",
+      "holesOptimized": "Holes optimized"
+    },
+    "quotes": [
+      "\"With great tools comes great responsibility\"",
+      "\"99 little bugs in the code, 99 little bugs...\"",
+      "\"Coffee → Code → Commit → Repeat\""
+    ]
+  },
+  "pipeline": {
+    "title": "The Amazing DXF to G-code Generation Show!",
+    "subtitle": "Watch your design transform into machine-ready code",
+    "controls": {
+      "start": "Start",
+      "pause": "Pause",
+      "resume": "Resume",
+      "reset": "Reset"
+    },
+    "status": {
+      "processing": "Processing: {step}",
+      "complete": "🎉 Pipeline Complete!"
+    },
+    "steps": {
+      "1": {
+        "title": "Initialize Coffee",
+        "description": "Preparing the developer",
+        "example": "Coffee Status: ☕ READY\nDeveloper Status: 😴 → 😊"
+      },
+      "2": {
+        "title": "Parse DXF",
+        "description": "Reading the drawing file",
+        "example": "Input: drawing.dxf\nEntities found: 156"
+      },
+      "3": {
+        "title": "Extract Drilling",
+        "description": "Finding all drill points",
+        "example": "Found: 25 drill points\n8mm, 10mm, 15mm sizes"
+      },
+      "4": {
+        "title": "Translate Coords",
+        "description": "Converting to physical space",
+        "example": "Screen: (100, 200)\nPhysical: X-245.5 Y+125.0"
+      },
+      "5": {
+        "title": "Orient Workpiece",
+        "description": "Optimizing orientation",
+        "example": "Rotation: 0°\nOrigin: X0.0 Y0.0"
+      },
+      "6": {
+        "title": "Machine Position",
+        "description": "Calculating coordinates",
+        "example": "Machine Zero: Top-left\nFirst hole: X25.5 Y-30.0"
+      },
+      "7": {
+        "title": "Filter Operations",
+        "description": "Selecting horizontal only",
+        "example": "Total: 25 holes\nHorizontal: 18 ✓\nVertical: 7 ✗"
+      },
+      "8": {
+        "title": "Group by Tool",
+        "description": "Organizing by drill size",
+        "example": "T1: 8mm (8 holes)\nT2: 10mm (7 holes)\nT3: 15mm (3 holes)"
+      },
+      "9": {
+        "title": "Generate G-code",
+        "description": "Creating machine instructions",
+        "example": "G90 G54\nT1 M6\nG81 X25.5 Y-30.0 Z-15"
+      },
+      "10": {
+        "title": "Normalize Code",
+        "description": "Standardizing format",
+        "example": "Before: g1x10y20\nAfter: G01 X10.000 Y20.000"
+      },
+      "11": {
+        "title": "Add Safety",
+        "description": "Inserting safety checks",
+        "example": "G01 X50 Y30\n+ M150 (safety check)"
+      },
+      "12": {
+        "title": "Line Numbers",
+        "description": "Add N-numbers to each line",
+        "example": "Before: G01 X10 Y20\nAfter: N0010 G01 X10 Y20"
+      },
+      "13": {
+        "title": "Victory Dance",
+        "description": "Pipeline complete!",
+        "example": "✓ 250 lines generated\n✓ 18 holes ready\n✓ 0 crashes predicted\n\n🎵 VRRR VRRR DZZZZ 🎵\n(drilling sounds)\n💃 Dance time! 🕺"
+      }
+    }
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "app": {
+    "title": "Mach3 CNC-pingi tööriista andmete haldamine ja DXF-failide teisendamine G-koodiks",
+    "subtitle": "Lõputöö esitlus",
+    "author": "Noorem tarkvaraarendaja",
+    "school": "Kuressaare Ametikool",
+    "language": "Keel",
+    "studentName": "Anne Ruusmann"
+  },
+  "navigation": {
+    "home": "Avaleht",
+    "pipeline": "Töövoo demo",
+    "features": "Funktsionaalsus",
+    "viewPipeline": "Vaata töövoo demot",
+    "exploreFeatures": "Tutvu funktsionaalsusega",
+    "slideshow": "Slaidiesitlus",
+    "previous": "Eelmine",
+    "next": "Järgmine",
+    "keyboardHint": "Kasuta nooleklahve navigeerimiseks • Tühik järgmiseks • P esitamiseks/peatamiseks"
+  },
+  "presentation": {
+    "toolManagement": {
+      "title": "Tööriistade haldamine",
+      "description": "Terviklik lahendus CNC-pingi tööriista andmete haldamiseks",
+      "features": {
+        "csv": "CSV-põhine tööriista andmete salvestus",
+        "sync": "Automaatne Mach3 sünkroniseerimine",
+        "backup": "Varundamise ja taastamise võimalused",
+        "vbscript": "VBScript integratsioon"
+      }
+    },
+    "dxfToGcode": {
+      "title": "DXF → G-kood",
+      "description": "Disainifailist masinakoodiks ühe nupulevajutusega",
+      "features": {
+        "parse": "DXF-faili parsimine",
+        "transform": "Koordinaatide teisendamine",
+        "optimize": "Horisontaalse puurimise optimeerimine",
+        "safety": "Ohutust tõhustatud G-koodi väljund"
+      }
+    },
+    "about": {
+      "title": "Projektist",
+      "description1": "Projekt ühendab minu varasema praktilise CNC kogemuse tarkvaraarendusega.",
+      "description2": "See kujutab endast praktilist lahendust reaalsele tootmisprobleemile.",
+      "description3": "Süsteem lisab juurde ohutu ja automatiseeritud horisontaalse puurimise töövoo. Selleks:",
+      "features": [
+        "— loodi sobiv tööriistaandmete haldamise süsteem",
+        "— täiendati tööriistavahetuse protseduuri",
+        "— liidestati uued moodulid olemasoleva tarkvaraga"
+      ]
+    },
+    "funFacts": {
+      "title": "Statistikat",
+      "coffeesConsumed": "Komme söödud",
+      "bugsSquashed": "Vigu parandatud",
+      "documentationFiles": "Dokumentatsioonifaile",
+      "toolsSynced": "Tööriistu sünkroniseeritud",
+      "holesOptimized": "Puuringuid tuvastatud",
+      "githubCommits": "GitHub'i kommitid"
+    },
+    "quotes": [
+      "\"Suurte tööriistadega kaasneb suur vastutus\"",
+      "\"99 väikest viga koodis, 99 väikest viga...\"",
+      "\"Kohv → Kood → Kinnita → Korda\""
+    ],
+    "cncComparison": {
+      "title": "Nagu LEGO, ainult võimsam",
+      "legoTitle": "LEGO CNC",
+      "realTitle": "Päris CNC"
+    }
+  },
+  "pipeline": {
+    "title": "Vaata, kuidas disainifail muundub masinale arusaadavaks koodiks",
+    "subtitle": "",
+    "controls": {
+      "start": "Alusta",
+      "pause": "Peata",
+      "resume": "Jätka",
+      "reset": "Lähtesta"
+    },
+    "status": {
+      "processing": "Töötlemine: {step}",
+      "complete": "🎉 Töövoog lõpetatud!"
+    },
+    "steps": {
+      "1": {
+        "title": "Kohvi valmistamine",
+        "description": "Arendaja ettevalmistamine",
+        "example": "Kohvi staatus: ☕ VALMIS\nArendaja staatus: 😴 → 😊"
+      },
+      "2": {
+        "title": "DXF parsimine",
+        "description": "Nagu hieroglüüfide dešifreerimine, ainult täpsem",
+        "example": ""
+      },
+      "3": {
+        "title": "Puuringute andmete eraldamine",
+        "description": "Nagu sõelaga joonist kurnata",
+        "example": "CIRCLE objektist EDGE.DRILL_D8.0_P21.5 kihil:\n{\n  \"position\": (-708.499, -9.5, -554.998),\n  \"diameter\": 8.0,\n  \"depth\": 21.5,\n  \"extrusion_vector\": (-1, 0, 0),\n  \"layer\": \"EDGE.DRILL_D8.0_P21.5\",\n  \"entity_type\": \"CIRCLE\"\n}"
+      },
+      "4": {
+        "title": "Koordinaatide teisendus",
+        "description": "Teretulemast 2D maailmast 3D omasse!",
+        "example": "Teisendamise algoritmide rakendamine punkti x, y ja z koordinaadi leidmiseks."
+      },
+      "5": {
+        "title": "Tooriku valikuline pööramine",
+        "description": "Nagu Tetris, ainult kallis",
+        "example": "Enne pööramist:\nPunkt: (50, 600, 12)\nVektor: (0, -1, 0)\n\nPärast 90° pööramist:\nPunkt: (600, -50, 12)\nVektor: (-1, 0, 0)"
+      },
+      "6": {
+        "title": "Masina positsioon",
+        "description": "Arvutame koordinaadid masinale sobivaks",
+        "example": "Veidi lihtsamad teisendamise algoritmid\n\nMasina null: Ülemine vasak nurk\nEsimene ava: X25.5 Y-30.0"
+      },
+      "7": {
+        "title": "Operatsioonide filtreerimine",
+        "description": "Vertikaalsed jätame välja - gravitatsioon pole minu sõber",
+        "example": "Kokku: 25 ava\nHorisontaalsed: 18 ✓\nVertikaalsed: 7 ✗"
+      },
+      "8": {
+        "title": "Grupeerimine tööriista järgi",
+        "description": "Sama suund ja suurus",
+        "example": "T1: 8mm (8 ava)\nT2: 10mm (7 ava)\nT3: 15mm (3 ava)"
+      },
+      "9": {
+        "title": "G-koodi genereerimine",
+        "description": "Masina käskude loomine (robotikeel \"puuri siia\" jaoks)",
+        "example": "G90 G54\nT1 M6\nG81 X25.5 Y-30.0 Z-15"
+      },
+      "10": {
+        "title": "Koodi normaliseerimine",
+        "description": "Marie Kondo G-koodile",
+        "example": "Enne: g1x10y20\nPärast: G01 X10.000 Y20.000"
+      },
+      "11": {
+        "title": "Ohutuse lisamine",
+        "description": "Ohutuskontrollide lisamine\nSest kokkupõrked on kallid",
+        "example": ""
+      },
+      "12": {
+        "title": "Reanumbrid",
+        "description": "N-numbrid",
+        "example": "Enne: G01 X10 Y20\nPärast: N0010 G01 X10 Y20"
+      },
+      "13": {
+        "title": "Võidutants",
+        "description": "Töövoog lõpetatud!",
+        "example": "✓ 250 rida genereeritud\n✓ 18 auku valmis\n✓ 0 kokkupõrget ennustatud\n\n🎵 VRRR VRRR DZZZZ 🎵\n(puurimise helid)\n💃 Tantsi! 🕺"
+      }
+    }
+  }
+}
