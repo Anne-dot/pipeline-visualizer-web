@@ -874,7 +874,7 @@ const toggleBackgroundVideo = () => {
 
         <!-- Google Drive Video Slide -->
         <div v-else-if="slides[currentSlide].type === 'google-drive-video'" :key="slides[currentSlide].id" class="w-full h-full relative flex items-center justify-center bg-background">
-          <div class="w-full h-full max-w-6xl max-h-[90vh] relative">
+          <div class="w-3/4 h-3/4 max-w-4xl max-h-[70vh] relative">
             <iframe 
               :src="`https://drive.google.com/file/d/${slides[currentSlide].content.driveFileId}/preview`"
               class="w-full h-full rounded-lg shadow-2xl"
