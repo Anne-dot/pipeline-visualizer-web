@@ -269,11 +269,10 @@ const slides = computed(() => [
   },
   {
     id: 'drilling-video',
-    type: 'video-background',
+    type: 'google-drive-video',
     content: {
-      videoPath: 'https://drive.google.com/uc?export=download&id=1ERxKjy768fZdG-yE9V9OxR1XHwzQUgIV',
-      playbackRate: 1.0,
-      loop: true
+      driveFileId: '1ERxKjy768fZdG-yE9V9OxR1XHwzQUgIV',
+      title: 'Drilling Process'
     }
   }
 ])
@@ -870,6 +869,19 @@ const toggleBackgroundVideo = () => {
                 <component :is="isBackgroundVideoPlaying ? Pause : Play" class="h-6 w-6" />
               </Button>
             </div>
+          </div>
+        </div>
+
+        <!-- Google Drive Video Slide -->
+        <div v-else-if="slides[currentSlide].type === 'google-drive-video'" :key="slides[currentSlide].id" class="w-full h-full relative flex items-center justify-center bg-background">
+          <div class="w-full h-full max-w-6xl max-h-[90vh] relative">
+            <iframe 
+              :src="`https://drive.google.com/file/d/${slides[currentSlide].content.driveFileId}/preview`"
+              class="w-full h-full rounded-lg shadow-2xl"
+              frameborder="0"
+              allow="autoplay"
+              allowfullscreen
+            />
           </div>
         </div>
       </transition>
