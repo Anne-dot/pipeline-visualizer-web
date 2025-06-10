@@ -12,6 +12,7 @@ import {
   ChevronLeft, 
   ChevronRight, 
   Play, 
+  Pause,
   Coffee,
   Candy,
   Drill,
@@ -31,7 +32,8 @@ import {
   Lock,
   Lightbulb,
   Hash,
-  Blocks
+  Blocks,
+  Puzzle
 } from 'lucide-vue-next'
 
 const { t } = useI18n()
@@ -71,6 +73,10 @@ const speedupTimeout = ref<NodeJS.Timeout | null>(null)
 
 // Audio for drilling sound
 const drillAudio = ref<HTMLAudioElement | null>(null)
+
+// Background video control
+const backgroundVideo = ref<HTMLVideoElement | null>(null)
+const isBackgroundVideoPlaying = ref(true)
 
 // Slides data
 const slides = computed(() => [
@@ -207,6 +213,45 @@ const slides = computed(() => [
     }
   },
   {
+    id: 'technologies',
+    type: 'technologies',
+    icon: Cpu,
+    content: {
+      title: 'Tehnoloogiad',
+      items: [
+        {
+          title: 'Biesse Rover 321R',
+          subtitle: 'CNC-töötlemiskeskus',
+          image: '/assets/images/biesse.jpeg'
+        },
+        {
+          title: 'Mach3',
+          subtitle: 'Juhtimistarkvara',
+          image: '/assets/images/artsoftLogo.png'
+        },
+        {
+          title: 'Python',
+          subtitle: 'Arendus',
+          image: '/assets/images/pythonLogo.png'
+        },
+        {
+          title: 'VBScript',
+          subtitle: 'Arendus',
+          image: '/assets/images/VB-Script-2.jpg'
+        },
+        {
+          title: 'CSV',
+          subtitle: 'Andmehaldus'
+        },
+        {
+          title: 'Probleemide lahendamine',
+          subtitle: 'Loominguline lähenemine',
+          icon: Puzzle
+        }
+      ]
+    }
+  },
+  {
     id: 'funfacts',
     type: 'stats',
     icon: Coffee,
@@ -220,6 +265,15 @@ const slides = computed(() => [
       ],
       quote: t('presentation.quotes.0'),
       thankYou: 'Tänan kuulamast!'
+    }
+  },
+  {
+    id: 'drilling-video',
+    type: 'video-background',
+    content: {
+      videoPath: '/assets/videos/drillingVideo-stable.mp4',
+      playbackRate: 1.0,
+      loop: true
     }
   }
 ])
@@ -284,6 +338,11 @@ watch(currentSlide, async (newSlide, oldSlide) => {
   // Handle video comparison slide
   if (slides.value[newSlide]?.type === 'video-comparison') {
     handleVideoComparison()
+  }
+  
+  // Reset background video state when entering video background slide
+  if (slides.value[newSlide]?.type === 'video-background') {
+    isBackgroundVideoPlaying.value = true
   }
 })
 
@@ -478,6 +537,18 @@ const closeVideoPopup = () => {
 const openImagePopup = (image: any) => {
   selectedVideo.value = image // Reuse video popup for images
   showVideoPopup.value = true
+}
+
+// Toggle background video play/pause
+const toggleBackgroundVideo = () => {
+  if (backgroundVideo.value) {
+    if (isBackgroundVideoPlaying.value) {
+      backgroundVideo.value.pause()
+    } else {
+      backgroundVideo.value.play()
+    }
+    isBackgroundVideoPlaying.value = !isBackgroundVideoPlaying.value
+  }
 }
 </script>
 
@@ -735,6 +806,69 @@ const openImagePopup = (image: any) => {
                   class="w-full h-full object-contain bg-muted/30 rounded-lg"
                 />
               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technologies Slide -->
+        <div v-else-if="slides[currentSlide].type === 'technologies'" :key="slides[currentSlide].id" class="w-full h-full flex flex-col">
+          <div class="text-center mb-2">
+            <div class="flex justify-center mb-1">
+              <component :is="slides[currentSlide].icon" class="h-10 w-10 text-muted-foreground" />
+            </div>
+            <h2 class="text-2xl font-bold">{{ slides[currentSlide].content.title }}</h2>
+          </div>
+          
+          <div class="flex-1 grid grid-cols-3 gap-3 px-4 py-1">
+            <div v-for="item in slides[currentSlide].content.items" :key="item.title" 
+              class="transform transition-all duration-300 hover:scale-105"
+            >
+              <Card class="h-full border-0 bg-muted/30 hover:bg-muted/50 hover:shadow-lg">
+                <CardHeader class="text-center p-3">
+                  <div v-if="item.image" class="mb-2 flex justify-center">
+                    <img 
+                      :src="item.image" 
+                      :alt="item.title"
+                      class="h-12 w-auto object-contain"
+                    />
+                  </div>
+                  <div v-else-if="item.icon" class="mb-2 flex justify-center">
+                    <component :is="item.icon" class="h-12 w-12 text-muted-foreground" />
+                  </div>
+                  <div v-else class="mb-2 flex justify-center">
+                    <FileText class="h-12 w-12 text-muted-foreground" />
+                  </div>
+                  <CardTitle class="text-sm mb-1">{{ item.title }}</CardTitle>
+                  <CardDescription class="text-xs font-semibold">{{ item.subtitle }}</CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Background Slide -->
+        <div v-else-if="slides[currentSlide].type === 'video-background'" :key="slides[currentSlide].id" class="w-full h-full relative flex items-center justify-center bg-background">
+          <div class="w-1/2 h-1/2 relative rounded-lg overflow-hidden shadow-2xl">
+            <video 
+              ref="backgroundVideo"
+              :src="slides[currentSlide].content.videoPath"
+              class="absolute inset-0 w-full h-full object-cover"
+              autoplay
+              muted
+              :loop="slides[currentSlide].content.loop"
+              :playbackRate="slides[currentSlide].content.playbackRate"
+              @loadedmetadata="(e) => { e.target.playbackRate = slides[currentSlide].content.playbackRate }"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+              <Button 
+                @click="toggleBackgroundVideo"
+                variant="secondary"
+                size="icon"
+                class="h-12 w-12 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background/90"
+              >
+                <component :is="isBackgroundVideoPlaying ? Pause : Play" class="h-6 w-6" />
+              </Button>
             </div>
           </div>
         </div>
