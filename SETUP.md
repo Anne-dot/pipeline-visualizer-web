@@ -9,6 +9,95 @@ This guide will help you set up the Pipeline Visualizer Web application on your 
 - Node.js and npm
 - Git
 
+## Windows Setup (WSL)
+
+### Using Windows Subsystem for Linux (WSL)
+
+WSL is recommended for Windows users as it provides a Linux environment that works better with PHP development tools.
+
+1. **Install WSL**:
+   ```powershell
+   # Run in PowerShell as Administrator
+   wsl --install
+   ```
+
+2. **Install PHP in WSL**:
+   ```bash
+   sudo apt update
+   sudo apt install php8.1-cli php8.1-xml php8.1-curl php8.1-mbstring php8.1-sqlite3
+   ```
+
+3. **Install Composer in WSL**:
+   ```bash
+   curl -sS https://getcomposer.org/installer | php
+   sudo mv composer.phar /usr/local/bin/composer
+   sudo chmod +x /usr/local/bin/composer
+   ```
+
+4. **Install Node.js in WSL**:
+   ```bash
+   curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+   sudo apt install nodejs
+   ```
+
+### Common WSL Issues
+
+**If `composer install` fails in WSL:**
+
+1. **Clear Composer cache**:
+   ```bash
+   composer clear-cache
+   ```
+
+2. **Try with verbose output to see the error**:
+   ```bash
+   composer install -vvv
+   ```
+
+3. **If you get SSL/TLS errors**:
+   ```bash
+   composer config --global disable-tls true
+   composer config --global secure-http false
+   ```
+
+4. **If you get memory errors**:
+   ```bash
+   COMPOSER_MEMORY_LIMIT=-1 composer install
+   ```
+
+5. **If permissions are an issue**:
+   ```bash
+   sudo composer install --no-scripts
+   php artisan clear-compiled
+   composer dump-autoload
+   ```
+
+6. **WSL File System Performance Issues**:
+   
+   If `composer install` is extremely slow, it's likely due to WSL accessing Windows file system. Clone the project inside WSL's Linux file system instead:
+   
+   ```bash
+   # Navigate to WSL home directory
+   cd ~
+   
+   # Clone the project here
+   git clone https://github.com/Anne-dot/pipeline-visualizer-web.git
+   cd pipeline-visualizer-web
+   
+   # Now composer install should work faster
+   composer install
+   ```
+
+7. **Alternative: Use PHP from Windows**:
+   
+   If WSL continues to have issues, you can use Windows-native PHP:
+   ```bash
+   # Exit WSL and use Windows Command Prompt or PowerShell
+   # Make sure PHP and Composer are installed on Windows
+   # Then run:
+   composer install
+   ```
+
 ## Installation Steps
 
 ### 1. Clone the Repository
