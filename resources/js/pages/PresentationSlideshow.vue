@@ -144,8 +144,8 @@ const slides = computed(() => [
         },
         {
           title: 'Uue süsteemi UI',
-          type: 'image',
-          path: '/assets/images/NewToolTable.png',
+          type: 'video',
+          driveFileId: '1PFYTeMn5iqrwbEh385QVBOBB3XX03Rp8',
           isClickable: true
         }
       ]
@@ -162,12 +162,12 @@ const slides = computed(() => [
         {
           title: 'DXF fail',
           type: 'video',
-          path: '/assets/videos/dxfToGcode.webm'
+          driveFileId: '1_t4TqswVFHx9kyezBUWUMSZtQGQSh-6e'
         },
         {
           title: 'Mach3 demo',
           type: 'video',
-          path: '/assets/videos/mach3demo.webm'
+          driveFileId: '11IPq-NUrhwHY_JNVklNf5JD7qucPAUiy'
         }
       ]
     }
@@ -728,6 +728,14 @@ const toggleBackgroundVideo = () => {
                   :data-playback-rate="video.playbackRate"
                   :data-video-id="video.videoId"
                 />
+                <!-- Google Drive videos -->
+                <iframe v-else-if="video.driveFileId"
+                  :src="`https://drive.google.com/file/d/${video.driveFileId}/preview`"
+                  class="absolute inset-0 w-full h-full"
+                  frameborder="0"
+                  allow="autoplay"
+                  allowfullscreen
+                />
                 <!-- Local videos -->
                 <div v-else-if="video.path" 
                   @click="openVideoPopup(video)"
@@ -765,7 +773,18 @@ const toggleBackgroundVideo = () => {
             <div v-for="item in slides[currentSlide].content.items" :key="item.title" class="flex-1 flex flex-col">
               <h3 class="text-xl font-semibold text-center mb-3 text-muted-foreground">{{ item.title }}</h3>
               <div class="flex-1 relative rounded-lg overflow-hidden">
-                <div v-if="item.type === 'video'" 
+                <div v-if="item.type === 'video' && item.driveFileId" 
+                  class="relative h-full rounded-lg overflow-hidden"
+                >
+                  <iframe 
+                    :src="`https://drive.google.com/file/d/${item.driveFileId}/preview`"
+                    class="w-full h-full"
+                    frameborder="0"
+                    allow="autoplay"
+                    allowfullscreen
+                  />
+                </div>
+                <div v-else-if="item.type === 'video' && item.path" 
                   @click="openVideoPopup(item)"
                   class="relative h-full cursor-pointer transform transition-all duration-300 hover:scale-105 group"
                 >
