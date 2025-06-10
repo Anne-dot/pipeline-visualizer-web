@@ -271,7 +271,7 @@ const slides = computed(() => [
     id: 'drilling-video',
     type: 'video-background',
     content: {
-      videoPath: '/assets/videos/drillingVideo-stable.mp4',
+      videoPath: 'https://drive.google.com/uc?export=download&id=1ERxKjy768fZdG-yE9V9OxR1XHwzQUgIV',
       playbackRate: 1.0,
       loop: true
     }
